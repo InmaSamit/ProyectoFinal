@@ -2,7 +2,7 @@ const pool = require('../../utils/conexion_db');
 
 
 const RoutineModel = {
-  create: async ( user_id, name ) => {
+  create: async (user_id, name) => {
     const query = 'INSERT INTO routines (user_id, name) VALUES (?, ?)';
     const [result] = await pool.query(query, [user_id, name]);
     return result.insertId;

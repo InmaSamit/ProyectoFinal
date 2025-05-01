@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="64" height="64"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="SvgjsLinearGradient1001" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF0018"></stop> <!-- Rojo -->
+      <stop offset="20%" stop-color="#FFA52C"></stop> <!-- Naranja -->
+      <stop offset="40%" stop-color="#FFFF41"></stop> <!-- Amarillo -->
+      <stop offset="60%" stop-color="#008018"></stop> <!-- Verde -->
+      <stop offset="80%" stop-color="#0000F9"></stop> <!-- Azul -->
+      <stop offset="100%" stop-color="#86007D"></stop> <!-- Púrpura -->
+    </linearGradient>
+  </defs>
+  <!-- Tick MUY grueso (stroke-width="16") y curva suavizada -->
+  <path d="M14 32L28 50L52 14" fill="none" stroke="url(#rainbow)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

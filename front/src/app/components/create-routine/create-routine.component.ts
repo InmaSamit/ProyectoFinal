@@ -19,7 +19,7 @@ export class CreateRoutineComponent {
     user_id: 2, // Reemplaza esto si usas auth real
   };
 
-  constructor(private routineService: RoutineService) {}
+  constructor(private routineService: RoutineService) { }
 
   createRoutine() {
     if (!this.newRoutine.name.trim()) return;

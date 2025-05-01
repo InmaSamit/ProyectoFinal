@@ -20,21 +20,7 @@ module.exports = {
     const [rows] = await pool.query(query, [goalId]);
     return rows;
   },
-
-  update: async (id, data) => {
-    const query = `
-      UPDATE tasks SET title = ?, description = ?, duration_minutes = ?
-      WHERE id = ?
-    `;
-    const [result] = await pool.query(query, [
-      data.title,
-      data.description || null,
-      data.duration_minutes || null,
-      id
-    ]);
-    return result.affectedRows > 0;
-  },
-
+  
   remove: async (id) => {
     const query = 'DELETE FROM tasks WHERE id = ?';
     const [result] = await pool.query(query, [id]);

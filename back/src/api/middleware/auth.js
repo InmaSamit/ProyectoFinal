@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const User = require('./../models/users.models');
-const { use } = require('../routes/api/users.route');
 
+// Función para checkear que el usuario esta logeado
 const checkToken = async (req, res, next) => {
 
   console.log('Checkeando usuario...')
-  
+
   try {
     //comprobar si el token viene incluido en la cabecera de Authorization
     var header = req.headers['authorization'];
@@ -23,7 +23,7 @@ const checkToken = async (req, res, next) => {
     }
 
     const user = await User.getById(data.id);
-    
+
     //el usuario no existe
     if (!user) {
       return res.status(403).json({ message: 'El usuario no existe' });
@@ -33,18 +33,11 @@ const checkToken = async (req, res, next) => {
 
     console.log('Usuario logeado..' + req.user.name)
     next();
- 
+
   } catch (error) {
     return res.status(500).json({ message: `Error inesperado ${error}` });
   }
 
 };
 
-const checkOrganizator = async (req, res, next) => {
-  if (req.user.role !== 'ADMIN'){
-    return res.status(403).json({ message: 'Acceso solo a administradores' });
-  }
-  next();
-};
-
-module.exports = {checkToken, checkOrganizator};
+module.exports = { checkToken };

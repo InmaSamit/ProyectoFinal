@@ -12,7 +12,7 @@ module.exports = {
     return rows;
   },
 
-  getAllById: async (id) => {
+  getById: async (id) => {
     const [rows] = await pool.query('SELECT * FROM interests WHERE id = ?', [id]);
     return rows;
   },

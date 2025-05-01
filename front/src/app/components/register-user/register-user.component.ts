@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register-user',
@@ -19,7 +20,7 @@ export class RegisterUserComponent {
   constructor(private http: HttpClient) {}
 
   register() {
-    this.http.post('http://localhost:4500/users/register', this.user).subscribe({
+    this.http.post(`${environment.apiUrl}/users/register`, this.user).subscribe({
       next: () => {
         alert('Usuario creado');
         this.success.emit();

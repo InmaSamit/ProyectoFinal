@@ -21,15 +21,15 @@ const register = async (req, res) => {
 
   try {
     // Preparamos el usuario a insertar
-    const userData = req.body; 
-    userData.password = bcrypt.hashSync( userData.password, 10);
-    
+    const userData = req.body;
+    userData.password = bcrypt.hashSync(userData.password, 10);
+
     // Intentamos insertar el usuario en la base de datos
     const result = await User.create(userData);
-    
+
     if (!result) {
       return res.status(400).json({ message: 'No se ha insertado' });
-    }    
+    }
     return res.status(201).json({ userid: result });
 
   } catch (error) {
@@ -44,7 +44,7 @@ const login = async (req, res) => {
   // Validación de los datos 
   await body('name').notEmpty().withMessage('El nombre es obligatorio').run(req);
   await body('password').notEmpty().withMessage('El password es obligatorio').run(req);
-  
+
   // Comprobamos si hay errores em la validación
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -53,17 +53,17 @@ const login = async (req, res) => {
 
   // Obtenemos el usuario de bbdd
   const result = await User.getByName(req.body.name);
-  
+
   if (result.length < 1) {
     return res.status(403).json({ message: 'No existe un usuario' });
-  }    
+  }
 
   const user = result[0];
 
   // comparar la contraseña que me has enviado con la guardada en la BD
   const isSame = bcrypt.compareSync(req.body.password, user.password);
-  
-  if(!isSame){
+
+  if (!isSame) {
     return res.status(403).json({ message: 'Contraseña incorrecta' });
   }
 
@@ -72,9 +72,5 @@ const login = async (req, res) => {
   res.json({ success: true, token: 'Bearer ' + token });
 };
 
-// Función para devolver la info de usuario del token
-const getProfile = async (req, res) => {
-  return res.status(200).json(req.user);
-}
 
-module.exports = { register, login, getProfile};
+module.exports = { register, login };

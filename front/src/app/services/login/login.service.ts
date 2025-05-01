@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,11 @@ import { Observable } from 'rxjs';
 export class LoginService {
   private httpClient = inject(HttpClient);
 
-  private API_URL: string = 'http://localhost:4500/users/login';
+private API_URL: string =`${environment.apiUrl}/users`;
 
 
   public postLogin(user: User): Observable<Token> {
-    return this.httpClient.post<Token>(this.API_URL, user);
+    return this.httpClient.post<Token>(`${this.API_URL}/login`, user);
   }
 
 }

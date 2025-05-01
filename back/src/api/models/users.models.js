@@ -1,7 +1,7 @@
 const pool = require('../../utils/conexion_db');
 
 const User = {
-//función para insertar nuevo usuario:
+  //función para insertar nuevo usuario:
   create: async (user) => {
     const sqlInsert = `INSERT INTO users (name, email, phone, password) VALUES (?,?,?,?)`;
     const [result] = await pool.query(sqlInsert, [user.name, user.email, user.phone, user.password]);
@@ -15,7 +15,7 @@ const User = {
   //busqueda de usuario por nombre
   getByName: async (name) => {
     const sqlSelect = 'SELECT * FROM users WHERE name = ? '; //consulta 
-    const [result] = await pool.query(sqlSelect,  [name]);
+    const [result] = await pool.query(sqlSelect, [name]);
     return result;
   },
 

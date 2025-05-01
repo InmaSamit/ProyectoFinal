@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface RoutineTask {
   id?: number;
@@ -16,21 +17,21 @@ export interface RoutineTask {
 
 @Injectable({ providedIn: 'root' })
 export class RoutineTaskService {
-  private apiUrl = 'http://localhost:4500/routine-task';
+  private API_URL: string = `${environment.apiUrl}/routine-task`;
 
   constructor(private http: HttpClient) {}
   
   getByRoutine(routineId: number): Observable<RoutineTask[]> {
-    return this.http.get<RoutineTask[]>(`${this.apiUrl}/routine/${routineId}`);
+    return this.http.get<RoutineTask[]>(`${this.API_URL}/routine/${routineId}`);
   }
   
 
   create(task: Partial<RoutineTask>): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, task);
+    return this.http.post(`${this.API_URL}`, task);
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.API_URL}/${id}`);
   }
 
 }

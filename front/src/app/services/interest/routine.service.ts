@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface Routine {
   id?: number;
@@ -11,9 +12,9 @@ export interface Routine {
 
 @Injectable({ providedIn: 'root' })
 export class RoutineService {
-  private API_URL = 'http://localhost:4500/routine';
+  private API_URL: string = `${environment.apiUrl}/routine`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   create(routine: Routine): Observable<Routine> {
     return this.http.post<Routine>(this.API_URL, routine);

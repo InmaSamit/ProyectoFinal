@@ -23,21 +23,6 @@ const RoutineTaskModel = {
     return rows;
   },
 
-  update: async (id, data) => {
-    const query = `
-      UPDATE routine_tasks
-      SET day_of_week = ?, start_time = ?, end_time = ?
-      WHERE id = ?
-    `;
-    const [result] = await pool.query(query, [
-      data.day_of_week,
-      data.start_time,
-      data.end_time,
-      id
-    ]);
-    return result.affectedRows > 0;
-  },
-
   remove: async (id) => {
     const query = `DELETE FROM routine_tasks WHERE id = ?`;
     const [result] = await pool.query(query, [id]);
