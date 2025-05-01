@@ -24,12 +24,15 @@ mysql -u root -p rutinmas < bbdd.sql
 1. `cd back`  
 2. `npm install`  
 3. Crear `.env`:  
-HOST=localhost
-USER_DB=tu_usuario
-PASS_DB=tu_contraseña
-PORT_DB=4500
-NAME_DB=nombre_db #ej.rutinmas
-JWT_API_SECRET=tu_secreto
+```
+HOST=127.0.0.1
+USER_DB=root
+PASS_DB=root
+PORT_DB=3306
+NAME_DB=rutinmas
+JWT_API_SECRET=pepito
+
+```
 
 4. `node index.js` → http://localhost:4500  
 
