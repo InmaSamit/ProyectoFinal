@@ -1,0 +1,22 @@
+<div class="modal-backdrop">
+    <div class="modal-form">
+      <h3>¡Creación de un nuevo interés!</h3>
+      <form #form="ngForm" (ngSubmit)="create()">
+        <div class="form-row">
+          <label for="title">Título:</label>
+          <input id="title" [(ngModel)]="interest.title" name="title" required />
+        </div>
+  
+        <div class="form-row">
+          <label for="description">Descripción:</label>
+          <input id="description" [(ngModel)]="interest.description" name="description" />
+        </div>
+  
+        <div class="buttons">
+          <button type="button" (click)="cancel()">Cancelar</button>
+          <button type="submit" [disabled]="form.invalid">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

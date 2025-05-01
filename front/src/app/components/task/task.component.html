@@ -1,0 +1,35 @@
+<!-- src/app/components/task/task.component.html -->
+<div class="table-responsive">
+ <h2 class="mb-4 text-center">📋 Mis tareas de {{ goal.title || 'Cargando...' }}</h2>
+    <table class="table table-hover align-middle shadow-sm border rounded">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">📝 Título</th>
+          <th scope="col">📝 Descripción</th>
+          <th scope="col">⏱ Duración (min)</th>
+          <th scope="col" class="text-center">⚙️ Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.duration_minutes }}</td>
+          <td class="text-center">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteTask(task)" title="Eliminar">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+        <tr (click)="openModal()" style="cursor: pointer;" class="table-light text-primary">
+          <td colspan="3" class="text-center fw-semibold">
+            <i class="bi bi-plus-square-fill" style="margin:2px"></i>Añadir nueva tarea
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Modal para crear tareas -->
+  <app-create-task [goal]="goal" *ngIf="showModal" (close)="closeModal()" (created)="loadTasks()"></app-create-task>
+  

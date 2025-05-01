@@ -18,8 +18,16 @@
           <button type="submit" class="btn btn-primary w-100">
             <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
           </button>
+          <button class="btn btn-link w-100 mt-2" (click)="toggleRegister()">Registrar</button>
+
+
         </form>
       </div>
     </div>
   </div>
+  <app-register-user 
+  *ngIf="showRegister" 
+  (closed)="toggleRegister()" 
+  (success)="onRegisterSuccess()">
+</app-register-user>
 </div>

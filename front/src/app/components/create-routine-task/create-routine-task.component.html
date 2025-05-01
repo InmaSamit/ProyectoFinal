@@ -1,0 +1,58 @@
+<!-- src/app/components/create-routine-task/create-routine-task.component.html -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5); z-index: 1050;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h5 class="modal-title">🗓️ Agendar tarea en rutina</h5>
+        </div>
+  
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Interés</label>
+            <select class="form-select" [(ngModel)]="selectedInterestId" (change)="onInterestChange()">
+              <option *ngFor="let interest of interests" [value]="interest.id">{{ interest.title }}</option>
+            </select>
+          </div>
+  
+          <div class="mb-3" *ngIf="goals.length">
+            <label class="form-label">Objetivo</label>
+            <select class="form-select" [(ngModel)]="selectedGoalId" (change)="onGoalChange()">
+              <option *ngFor="let goal of goals" [value]="goal.id">{{ goal.title }}</option>
+            </select>
+          </div>
+  
+          <div class="mb-3" *ngIf="tasks.length">
+            <label class="form-label">Tarea</label>
+            <select class="form-select" [(ngModel)]="selectedTaskId" (change)="onTaskChange()">
+              <option *ngFor="let task of tasks" [value]="task.id">{{ task.title }}</option>
+            </select>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Día de la semana</label>
+            <select class="form-select" [(ngModel)]="day">
+              <option *ngFor="let day of days" [value]="day.value">{{ day.label }}</option>
+            </select>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Hora de inicio</label>
+            <input type="time" class="form-control" [(ngModel)]="startTime" (change)="calculateEndTime()" />
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Hora de fin</label>
+            <input type="time" class="form-control" [value]="endTime" disabled />
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="close()">Cancelar</button>
+          <button class="btn btn-primary" (click)="agendar()">Agendar</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

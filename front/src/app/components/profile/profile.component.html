@@ -1,1 +1,55 @@
-<app-interests></app-interests>
+<div class="container py-4">
+    <!-- Tarjeta flotante con el componente app-interests -->
+    <div *ngIf="showInterest" class="card shadow-sm mx-auto" style="width: 100%; position: relative; ">
+      <div class="card-body">
+        <!-- Pasamos el interés ID al componente -->
+        <app-interests (delete)="reload()" (goGoals)="showGoalComponent($event)"></app-interests> <!-- Aquí el ID es 1, puedes pasarlo dinámicamente -->
+      </div>
+    </div>
+  
+    <!-- Componente app-goal visible solo cuando se activa -->
+    <div *ngIf="showGoal" class="card shadow-sm mx-auto mt-4" style="width: 100%; position: relative; ">
+      <div class="card-body">
+        <!-- Ahora pasamos el interestId al componente app-goal -->
+        <app-goal (delete)="reload()"  (goTask)="showTaskComponent($event)" [interestId]="currentInterestId"></app-goal>
+      </div>
+    </div>
+  
+    <!-- Icono de abrir el componente de intereses -->
+    <div *ngIf="showGoal" class="text-center mt-3">
+      <button (click)="showInterest = true; showGoal = false" class="btn btn-outline-primary">
+        <i class="fa fa-star"></i>🌟 Volver a Mis Intereses
+      </button>
+    </div>
+
+    <!-- Componente app-goal visible solo cuando se activa -->
+    <div *ngIf="showTask" class="card shadow-sm mx-auto mt-4" style="width: 100%; position: relative; ">
+        <div class="card-body">
+            <!-- Ahora pasamos el currentGaolId al componente app-goal -->
+            <app-task (delete)="reload()"  [goal]="currentGoal"></app-task>
+        </div>
+        </div>
+    
+
+    <!-- Icono de abrir el componente de objetivos -->
+    <div *ngIf="showTask" class="text-center mt-3">
+        <button (click)="showGoal = true; showTask = false" class="btn btn-outline-primary">
+            <i class="fa fa-star"></i>🎯 Volver a Mis Objetivos
+        </button>
+        </div>
+    <!-- Rutinas -->
+      
+    <div class="card shadow-sm mx-auto" style="width: 100%; margin-top:10px;position: relative; ">
+      <div class="card-body">
+        <app-routine></app-routine> 
+      </div>
+    </div>
+
+    <!-- Cerrar sesion -->
+    <div class="text-center mt-3">
+      <button (click)="closeSesion()" class="btn btn-outline-danger">
+        <i class="bi bi-door-closed-fill">Cerrar sesion</i>
+      </button>
+      </div>
+  </div>
+  

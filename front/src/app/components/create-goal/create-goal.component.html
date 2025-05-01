@@ -1,0 +1,30 @@
+<!-- Modal backdrop -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title">Crear nuevo objetivo</h5>
+        </div>
+  
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" id="title" [(ngModel)]="newGoal.title" class="form-control" />
+          </div>
+  
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" [(ngModel)]="newGoal.description" class="form-control"></textarea>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="createGoal()">Crear</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

@@ -12,6 +12,12 @@ module.exports = {
     return rows;
   },
 
+  getAllById: async (id) => {
+    const [rows] = await pool.query('SELECT * FROM interests WHERE id = ?', [id]);
+    return rows;
+  },
+
+
   delete: async (id) => {
     const [result] = await pool.query('DELETE FROM interests WHERE id = ?', [id]);
     return result.affectedRows > 0;

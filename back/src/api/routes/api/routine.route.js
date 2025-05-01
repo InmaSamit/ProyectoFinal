@@ -3,8 +3,7 @@ const router = express.Router();
 const RoutineController = require('../../controllers/routine.controller');
 
 router.post('/', RoutineController.createRoutine);
-router.get('/user/:userId', RoutineController.getRoutinesByUser);
-router.put('/:id', RoutineController.updateRoutine);
+router.get('/', RoutineController.getRoutinesByUser);
 router.delete('/:id', RoutineController.deleteRoutine);
 
 module.exports = router;

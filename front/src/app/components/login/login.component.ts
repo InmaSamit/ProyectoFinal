@@ -2,11 +2,13 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService, User, Token } from '../../services/login/login.service';
+import { RegisterUserComponent } from '../register-user/register-user.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RegisterUserComponent,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -18,7 +20,7 @@ export class LoginComponent implements OnDestroy {
   contrasena: string = '';
 
   login(): void {
-    debugger
+
     if(this.nombre !== '' && this.contrasena !== '') {
       const user: User = {
         name: this.nombre,
@@ -37,6 +39,18 @@ export class LoginComponent implements OnDestroy {
         },
     });
     }
+  }
+
+  showRegister = false;
+
+  toggleRegister() {
+    this.showRegister = !this.showRegister;
+  }
+
+  onRegisterSuccess() {
+    this.toggleRegister();
+    this.nombre = '';
+    this.contrasena = '';
   }
 
   ngOnDestroy(): void {

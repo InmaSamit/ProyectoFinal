@@ -1,0 +1,39 @@
+<!-- routine.component.html -->
+<div>
+<h2 class="mb-4 text-center">🗓️ Mis rutinas</h2>
+
+<div class="accordion" id="routineAccordion">
+    <div class="accordion-item" *ngFor="let routine of routines">
+      <h2 class="accordion-header" id="heading{{routine.id}}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + routine.id" aria-expanded="false" [attr.aria-controls]="'collapse' + routine.id">
+          {{ routine.name }}
+        </button>
+      </h2>
+      <div [id]="'collapse' + routine.id" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + routine.id" data-bs-parent="#routineAccordion">
+        <div class="accordion-body">
+          <app-week-calendar [routine]="routine"></app-week-calendar>
+          <button
+          class="btn btn-outline-danger btn-sm"
+          (click)="deleteRoutine(routine)"
+          title="Eliminar">
+          <i class="bi bi-trash-fill"></i>
+        </button>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading0">
+        <button (click)="openModal()" class="accordion-button collapsed" type="button" >
+          <i class="bi bi-plus-square-fill" style="margin:2px"></i>Añadir un nueva rutina
+        </button>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para crear rutina -->
+<app-create-routine
+  *ngIf="showCreateModal"
+  (close)="closeModal()"
+  (created)="created()"
+></app-create-routine>

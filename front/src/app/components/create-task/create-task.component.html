@@ -1,0 +1,37 @@
+<!-- Modal backdrop -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir tarea</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="createTask()">
+          <div class="mb-3">
+            <label for="taskTitle" class="form-label">Título</label>
+            <input type="text" id="taskTitle" [(ngModel)]="task.title" name="title" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Descripción</label>
+            <textarea id="taskDescription" [(ngModel)]="task.description" name="description" class="form-control"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="taskDuration" class="form-label">Duración (minutos)</label>
+            <input type="number" id="taskDuration" [(ngModel)]="task.duration_minutes" name="duration_minutes" class="form-control" required />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" (click)="createTask()">Crear</button>
+      </div>
+
+    </div>
+  </div>
+</div>

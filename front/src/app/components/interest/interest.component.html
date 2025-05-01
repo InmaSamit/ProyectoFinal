@@ -1,25 +1,48 @@
-<h2>Mis intereses</h2>
+<div *ngIf="showInterest">
+  <h2 class="mb-4 text-center">🌟 Mis intereses</h2>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let interest of interests">
-      <td>{{ interest.title }}</td>
-      <td>{{ interest.description }}</td>
-      <td>
-        <button class="btn btn-outline-primary btn-sm me-2" (click)="goToDetail(interest.id)">
-          👁️
-        </button>
-        <button class="btn btn-outline-danger btn-sm" (click)="deleteInterest(interest.id)">
-          🗑️
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm border rounded">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">📌 Nombre</th>
+          <th scope="col">📝 Descripción</th>
+          <th scope="col" class="text-center">⚙️ Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let interest of interests">
+          <td>{{ interest.title }}</td>
+          <td>{{ interest.description }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-outline-primary btn-sm me-2"
+              (click)="goToDetail(interest.id)"
+              title="Ver detalle"
+            >
+            <i class="bi bi-list"></i>
+            </button>
+            <button
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteInterest(interest.id)"
+              title="Eliminar"
+            >
+            <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+        <tr (click)="openModal()" style="cursor: pointer;" class="table-light text-primary">
+          <td colspan="3" class="text-center fw-semibold">
+            <i class="bi bi-plus-square-fill" style="margin:2px"></i>Añadir un nuevo interés
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-create-interest
+    *ngIf="showCreateModal"
+    (close)="closeModal()"
+    (created)="reloadInterests()"
+  ></app-create-interest>
+</div>

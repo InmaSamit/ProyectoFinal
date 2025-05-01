@@ -1,0 +1,48 @@
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .form-row label {
+    width: 120px;
+    font-weight: bold;
+  }
+  
+  .form-row input {
+    flex: 1;
+    padding: 0.5rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .modal {
+    z-index: 1050 !important; /* Valor más alto que el de las tarjetas */
+  }
+  
+  .card {
+    position: relative;
+    z-index: 1; /* Asegúrate de que las tarjetas tengan un z-index menor */
+  }
+  

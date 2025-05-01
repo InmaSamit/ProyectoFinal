@@ -17,7 +17,8 @@ const RoutineTaskModel = {
   },
 
   getByRoutine: async (routineId) => {
-    const query = `SELECT * FROM routine_tasks WHERE routine_id = ?`;
+    console.log("getByRoutine " + routineId);
+    const query = `SELECT rt.id as id, rt.routine_id, rt.task_id as task_id, rt.day_of_week as day_of_week, rt.start_time as start_time, rt.end_time as end_time,t.title, t.description FROM routine_tasks rt JOIN tasks t ON rt.task_id = t.id WHERE routine_id = ?`;
     const [rows] = await pool.query(query, [routineId]);
     return rows;
   },

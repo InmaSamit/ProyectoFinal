@@ -1,0 +1,25 @@
+<!-- Modal backdrop -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title">Crear nueva rutina</h5>
+        </div>
+  
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" id="name" [(ngModel)]="newRoutine.name" class="form-control" />
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="createRoutine()">Crear</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

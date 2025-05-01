@@ -2,9 +2,10 @@ const { body, param, validationResult } = require('express-validator');
 const RoutineTaskModel = require('../models/routineTask.models');
 
 const createRoutineTask = async (req, res) => {
+  console.log("createRoutineTask");
   await body('routine_id').isInt().run(req);
   await body('task_id').isInt().run(req);
-  await body('day_of_week').isIn(['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']).run(req);
+  await body('day_of_week').isIn([1,2,3,4,5,6,7]).run(req);
   await body('start_time').matches(/^\d{2}:\d{2}(:\d{2})?$/).run(req);
   await body('end_time').matches(/^\d{2}:\d{2}(:\d{2})?$/).run(req);
 
@@ -21,12 +22,14 @@ const createRoutineTask = async (req, res) => {
 };
 
 const getByRoutine = async (req, res) => {
+  console.log("getByRoutine " + req.user.id);
   await param('routineId').isInt().run(req);
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
   try {
     const tasks = await RoutineTaskModel.getByRoutine(req.params.routineId);
+    console.log("getByRoutine result " + tasks.length);
     res.json(tasks);
   } catch (error) {
     console.error('Error al obtener routine_tasks:', error);

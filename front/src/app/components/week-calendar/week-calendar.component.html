@@ -1,0 +1,33 @@
+<div class="table-responsive">
+  <table class="table table-bordered text-center">
+    <thead class="table-light">
+      <tr>
+        <th *ngFor="let day of daysOfWeek">{{ day.value }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let day of daysOfWeek">
+          <div *ngFor="let task of getTasksForDay(day.value)" class="card mb-2">
+            <div class="card-header d-flex justify-content-between">
+              <small>{{ task.title }}</small>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task)">❌</button>
+            </div>
+            <div class="card-body">
+              <small>{{ task.start_time }} - {{ task.end_time }}</small><br />
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-primary mt-2" (click)="addTask(day.num)">➕</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-create-routine-task
+  *ngIf="showTaskModal"
+  [routine]="routine"
+  [day]="currentDay"
+  (closeModal)="showTaskModal = false"
+  (created)="loadRoutineTasks()"
+></app-create-routine-task>

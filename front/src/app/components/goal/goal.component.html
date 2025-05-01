@@ -1,0 +1,43 @@
+<div>
+    <h2 class="mb-4 text-center">🎯 Mis Objetivos de {{ interest?.title || 'Cargando...' }}</h2>
+        <p class="text-muted">{{ interest?.description || 'Cargando...' }}</p>
+        
+    <div class="table-responsive">
+      <table class="table table-hover align-middle shadow-sm border rounded">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">📌 Título</th>
+            <th scope="col">📝 Descripción</th>
+            <th scope="col" class="text-center">⚙️ Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let goal of goals">
+            <td>{{ goal.title }}</td>
+            <td>{{ goal.description }}</td>
+            <td class="text-center">
+              <button class="btn btn-outline-primary btn-sm me-2" title="Ver" (click)="goToDetail(goal)" >
+                <i class="bi bi-list"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteGoal(goal)" title="Eliminar">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+          </tr>
+          <tr (click)="openModal()" style="cursor: pointer;" class="table-light text-primary fw-semibold">
+            <td colspan="3" class="text-center">
+              <i class="bi bi-plus-square-fill" style="margin:2px"></i>Añadir nuevo objetivo
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <app-create-goal
+      *ngIf="showModal"
+      [interestId]="interestId"
+      (close)="closeModal()"
+      (created)="loadGoals()"
+    ></app-create-goal>
+  </div>
+  

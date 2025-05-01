@@ -31,33 +31,10 @@ const getGoalsByInterest = async (req, res) => {
   }
 
   try {
-    const goals = await GoalModel.getAllByInterest(req.params.interestId);
+    const goals = await GoalModel.getByInterest(req.params.interestId);
     res.json(goals);
   } catch (error) {
     console.error('Error al obtener los objetivos:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
-};
-
-// Actualizar un goal
-const updateGoal = async (req, res) => {
-  await param('id').isInt().withMessage('ID inválido').run(req);
-  await body('title').optional().notEmpty().withMessage('Título no válido').run(req);
-  await body('description').optional().isString().run(req);
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  try {
-    const updated = await GoalModel.update(req.params.id, req.body);
-    if (!updated) {
-      return res.status(404).json({ message: 'Objetivo no encontrado' });
-    }
-    res.json({ message: 'Objetivo actualizado' });
-  } catch (error) {
-    console.error('Error al actualizar el objetivo:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
@@ -86,6 +63,5 @@ const deleteGoal = async (req, res) => {
 module.exports = {
   createGoal,
   getGoalsByInterest,
-  updateGoal,
   deleteGoal
 };

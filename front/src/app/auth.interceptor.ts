@@ -16,9 +16,9 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
     console.log("Añadiendo token...");
     const token = sessionStorage.getItem('token');
     var router = inject(Router);
-    debugger
-    // Si el token no existe, redirige al login
-    if (!token) {
+    
+    // Si el token no existe, o es el endpoint de registro... redirige al login
+    if (!token && !req.url.includes("users")) {
         router.navigate(['/login']); // Redirige a la página de login
         return new Observable<HttpEvent<any>>(); // Detiene la solicitud HTTP
         }
