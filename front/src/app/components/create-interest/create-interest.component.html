@@ -1,22 +1,40 @@
-<div class="modal-backdrop">
-    <div class="modal-form">
-      <h3>¡Creación de un nuevo interés!</h3>
+<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¡Creación de un nuevo interés!</h5>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cancel()"></button>
+      </div>
       <form #form="ngForm" (ngSubmit)="create()">
-        <div class="form-row">
-          <label for="title">Título:</label>
-          <input id="title" [(ngModel)]="interest.title" name="title" required />
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="form-label">Título:</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="form-control"
+              [(ngModel)]="interest.title"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción:</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              class="form-control"
+              [(ngModel)]="interest.description"
+            />
+          </div>
         </div>
-  
-        <div class="form-row">
-          <label for="description">Descripción:</label>
-          <input id="description" [(ngModel)]="interest.description" name="description" />
-        </div>
-  
-        <div class="buttons">
-          <button type="button" (click)="cancel()">Cancelar</button>
-          <button type="submit" [disabled]="form.invalid">Crear</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Crear</button>
         </div>
       </form>
     </div>
   </div>
-  
+</div>
